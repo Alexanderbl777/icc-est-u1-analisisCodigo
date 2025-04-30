@@ -8,7 +8,7 @@ public class BenchMarking {
         long currentMilles = System.currentTimeMillis();
         long currentName = System.nanoTime();
         mO = new MetodosOrdenamiento();
-        int[] arreglo = generarArregloAleatorio(10000000);
+        int[] arreglo = generarArregloAleatorio(1000);
         Runnable tarea =()-> mO.burbujaTradicional(arreglo);
         double tiempoDuracionMili = medirConCurrentMilles(tarea);
         double tiempoDuracionNano = medirConCurrentTime(tarea);
