@@ -1,3 +1,5 @@
+import random
+
 class MetodosOrdenamiento:
     def sort_bubble(self, array):
         arreglo = array.copy()
@@ -10,25 +12,25 @@ class MetodosOrdenamiento:
                     arreglo[j], arreglo[j + 1] = arreglo[j + 1], arreglo[j]
 
         return arreglo
-    
-    def sort_seleccion(self, array):
+
+    def sort_selection(self, array):
         arreglo = array.copy()
         n = len(arreglo)
         print("Seleccion")
+
         for i in range(n):
-            iM= i
-            for j in range(n+1, n):
-                aux= arreglo[iM]
-                if arreglo[j] < arreglo[iM]:
-                    iM = j
-            arreglo[i], arreglo[iM] = arreglo[iM], arreglo[i]
+            min_idx = i
+            for j in range(i + 1, n):
+                if arreglo[j] < arreglo[min_idx]:
+                    min_idx = j
+            arreglo[i], arreglo[min_idx] = arreglo[min_idx], arreglo[i]
 
-        return arreglo;
+        return arreglo
 
-    def sort_Inserccion(self, array):
+    def sort_insertion(self, array):
         arreglo = array.copy()
         n = len(arreglo)
-        print("Inserccion")
+        print("Insercion")
 
         for i in range(1, n):
             clave = arreglo[i]
@@ -36,12 +38,34 @@ class MetodosOrdenamiento:
             while j >= 0 and arreglo[j] > clave:
                 arreglo[j + 1] = arreglo[j]
                 j -= 1
-        arreglo[j + 1] = clave
+            arreglo[j + 1] = clave
+
+        return arreglo
+
+    def sort_shell(self, array):
+        arreglo = array.copy()
+        n = len(arreglo)
+        print("Shell")
+
+        gap = n // 2
+        while gap > 0:
+            for i in range(gap, n):
+                temp = arreglo[i]
+                j = i
+                while j >= gap and arreglo[j - gap] > temp:
+                    arreglo[j] = arreglo[j - gap]
+                    j -= gap
+                arreglo[j] = temp
+            gap //= 2
 
         return arreglo
 
     def imprimir(self, mensaje):
         print("Mensaje:", mensaje)
+
+
+
+    
 
     
 
